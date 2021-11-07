@@ -2,9 +2,13 @@
 
 **Introduction**
 
-This is a friendly devops and administration guide for 3D printing in Ubuntu 20.04. The real power here is inherent efficiency, creating a free CAD/CAM environment for desktop computers.
+This is a friendly devops and administration guide for desktop 3D printing in Linux Ubuntu 20.04. 
 
-The two 3D printing suites supported in this documentation are MatterControl and Cura. Both work in other operating systems and are open source. The goal of this documentation is to apply their uses in Ubuntu 20.04 Linux. This is an interface like any other comsumer PC, with extensive control over quality at your fingertips. 
+The real power here is inherent efficiency that creates a reliable, usable, and free 3D printing. It's not just low code, but low cloud involvement. Normal user operation does not require an internet connection for daily use or access. Once the system is setup, you have an easy to use and free software system with little fuss that is easily adjusted. Artifacting in the prints has generally not been a problem. You don't need to worry about coding, either. This all works with easy adjustments inside GUI interfaces. Over 100 hours of design, printing and stress testing so far has produced reliable and quality prints with no unresolved design artifacts. 
+
+This repo and all of it's information is geared towards use in specifically Ubuntu 20.04. Looking for a reason to upgrade from an older version of Ubuntu? Then use this OS. The changes in 20.04 unclude better provisions for robotics and embedded electronics. These changes also allow for better use of 3D printers as a healthy biproduct. The 20.04 revision fixed a lot of bugs from 16.04 + 18.04, most notably software or hardware crashes. Upgrades, testing, and modifications are all easier to implement and use.
+
+The two 3D printing suites supported in this documentation are MatterControl and Cura. Both work in other operating systems and are open source. The goal of this documentation is to apply their uses in Ubuntu 20.04 Linux. Results are as solid and reliable as any other paid suite of tools. These present a usable interface like any other comsumer PC, with extensive control over quality at your fingertips.  
 
 4 main talking points:
 
@@ -13,15 +17,24 @@ The two 3D printing suites supported in this documentation are MatterControl and
 3. Cura v4.11
 4. Quality Control
 
-The infrastructure blueprints here presents a "blue collar manufacturing solution" for the rest of us. You don't need a degree, but some technical aptitude is very helpful. 
+The process of the toolchain works as follows:
 
-The test case presented here uses:
+1. Generate your design in Mattercontrol, and export it an .STL file. (The user combines and subtracts basic shapes to create the needed design. It is a GUI, not a coding studio or intense graphical program.(
+2. Open the .STL file in Cura to slice it and make printer adjustments. (This is where the magic happens to make finely tuned adjustments to your print without the demand of coding knowledge.)
+3. Upload the .gcode file to your printer or Octoprint, and print it.
 
-1. Free software, mentioned above. 
+
+The infrastructure blueprint here presents a "blue collar manufacturing solution" for the rest of us. You don't need a degree, but some technical aptitude is very helpful. This is a low code or no code system right out of the box. Most any skill level of technician can use it to great effect, without needing to be an engineer. The compromise there is knowing what you are doing with installations to set up the environments. Making adjustments to your print is a matter of software adjustment. You still need to mind your 3D printer's health and make sure it's clean.
+
+The test case here uses:
+
+1. Free design and slicing software, mentioned above. 
 2. An affordable 3D printer (Anycubic Mega X)
 3. 10 year old PC hardware
 
-3D printers are relatively cheap nowadays. You can invest in yourself and develop new skills for well under $1,000. That includes PC hardware and a decent printer. The software side of things is free and fairly easy to use with top notch results and usability. Old bugs and usability problems have largely been addressed. You can use these tools in a normal user interface on a normal personal computer. No knowledge of Linux or coding is required. Although, that knowledge and use is very handy as your skills advance. The excellent quality control available is why this guide was written. Investing in yourself is always wise. This documentation was written to help those trying to help themselves, but not quite sure where to start or how to get there. Some users are brand new while others have existing skillsets in related areas. Considering the pandemic in 2021 and resulting system changes in manufacturing, studying this open source environment is a healthy use of time and resources with very little cash outlay. The skills will be applicable in the Industry 4.0 paradigm as it grows over the next 5 years. Not all employers are seeking this skillset together at once. It has not been a stable or strong base to build upon until just now.
+This has been a reliable little workhorse of a setup for almost a year so far. There is no need for using Wine on any Windows or Mac software of any kind. 
+
+3D printers are relatively cheap nowadays. You can invest in yourself and develop new skills for well under $1,000. That includes used PC hardware and a decent printer. The software side of things is free and fairly easy to use with top notch results and usability. Old bugs and usability problems have largely been addressed. You can use these tools in a normal user interface on a normal personal computer. No extensive knowledge of Linux or coding is really required to get excellent quality prints. You can be just a user looking for good results and still get there pretty easily. The excellent quality control available in the system is why this guide was written.
 
 The goal of this guide is to support people who wish to 3D print applicable and low-cost industrial solutions like:
 
@@ -30,20 +43,20 @@ The goal of this guide is to support people who wish to 3D print applicable and 
 3. custom bracketry
 4. custom adapters
 
-This guide is NOT for 3D printing artistry. It is for "applicable design solutions" in a free and easy-to-use environment. The comfort and reliability is what is new. This has also not been relatively private and secure for the home user. You can keep your designs private and local. You can practice at home or grow your small/medium enterprise or project. The depth and extensibility of this simple setup can shrink an entire shop to a desk sized workstation. You can have a super-concentrated toolset without all the floor space, rent, debt, waste, noise, or maintenance costs. The reduction and concentration of resources is another strength of this user environment. 
+This guide is NOT for 3D printing artistry. It is for "applicable design solutions" in a free and easy-to-use environment. Graphic arts software is still an option if you desire, but their scope is beyond this guide. Feel free to incorporate other Ubuntu favorites like Blender, MeshLab, or FreeCAD as you see fit. This  is meant to be simpler to use than custom CAD/CAM solutions to bring designs to life from materials. You don't need in depth graphics programming knowledge, or any other to "just do the thing". The inherent comfort and reliability is what is new. You can also keep your designs private and local. You can practice at home or grow your small/medium enterprise or project. The depth and extensibility of this simple setup can shrink an entire shop to a desk sized workstation. You can have a super-concentrated toolset with software settings. This negates the need for all the floor space, rent, debt, waste, noise, or maintenance costs. The reduction and concentration of resources is another strength of this user environment. 
 
-If you desire to protect your work and NOT be reliant on a 3rd party cloud provider, then this can be a good guide for you. Some cloud providers require you to hand over rights to your designs in exchange for using their "free" services. That requirement actually presents an "ultimate cost" to the user in the long term. That requirement clashes with the needs to protect IP and customer information. Use of MatterControl and Cura on your own computer presents a simple toolchain that respects your privacy on a local machine. You don't need to be on the internet to use it, nor are you forced to compromise the integrity of your work. There are also numerous add-ons available. You can create a "chain-mail armor" solution, custom tailored to you or your shop's needs for free. That solution can be robust, reliable, and easy to use. Most of what is here is geared towards use of Ubuntu Linux, but you aren't restricted to that. 
+If you desire to protect your work and NOT be reliant on a 3rd party cloud provider, then this can be a good solution. Some cloud providers require you to hand over rights to your designs in exchange for using their "free" services. That requirement actually presents an "ultimate cost" to the user in the long term. That requirement clashes with the needs to protect IP and customer information. Use of MatterControl and Cura on your own computer presents a simple toolchain that respects your privacy on a local machine. You don't need to be on the internet to use it, nor are you forced to compromise the integrity of your work. There are also numerous add-ons available. You can create a "chain-mail armor" solution, custom tailored to you or your shop's needs for free. That solution can be robust, reliable, and easy to use. Most of what is here is geared towards use of Ubuntu Linux, but you aren't restricted to that. 
 
-Having explored this setup for over a year, it is time to unveil the stability, robust quality control, and ease of use for average users. Industry 4.0 need not be a scary thing or overhyped buzzword. You can learn how to weild it at home in your spare time. This is a "blue collar solution" for the rest of us. It offers a pleasant user experience on older hardware that does not require a lot of resources. You don't need a PhD, an engineering degree, or security clearance to to this. If you are a decent technician or gneral Ubuntu Linux user looking to update your skills for a changing production environment, then this is a healthy way to do that. 
+It is time to unveil the stability, robust quality control, and ease of use for average users after exploring this setup for over a year. Industry 4.0 need not be a scary thing or overhyped buzzword. You can learn how to weild it at home in your spare time. This is a "blue collar solution" for the rest of us. You don't need a PhD, an engineering degree, or security clearance to to this. It offers a pleasant user experience on older hardware that does not require a lot of resources. If you are a decent technician or general Ubuntu Linux user looking to update your skills for a changing production environment, then this is a healthy way to do that and get ahead of the curve in late 2021. 
 
-A heartfelt "thank you" is extended to those developers who have toiled day and night to make this reality available to the rest of us. This guide is a nod to their extensive efforts. I'm not the best coder or developer, but I do know how to make quality documentation and support people's efforts. This repo is for UBUNTU linux users. RedHat, CentOS, etc---I'm just one person and have not explored that end of things. The robust usability and stability of this environment is why I have chosen to support it and educate people.
+A heartfelt "thank you" is extended to those developers who have toiled day and night to make this reality available to the rest of us. This guide is a nod to their extensive efforts. I'm not the best coder or developer, but I do know how to make quality documentation and support people's efforts. The usability of these tools together in a stable environment deserves recognition. This repo is for UBUNTU linux users. RedHat, CentOS, etc---I'm just one person and have not explored that end of things. The robust usability and stability of this specific environment is why I have chosen to support it and educate people.
 
 
 **Basics**
 
 What this combination of software is called is a "toolchain" in industry terms. Instead of a single suite of tools in one interface, you have a short "chainlink" of tools that play nicely together. These tools function separately. 
 
-1. The first tool in the chain creates a design or drawing file in MatterControl. You can work with basic shapes, addition, and subtraction. The measurements are easy to specify. The printed results are often within a tenth of a millimeter of specified measurements. There is no need for complex wireframes like common CAD solutions. This software functions like easy-to-use online CAD design tools, but it respects your privacy and is stable. 
+1. The first tool in the chain creates a design or drawing file in MatterControl. You can work with basic shapes, addition, and subtraction. The measurements are easy to specify and fairly accurate in final form near .1mm or better in some cases. The printed results are often within a tenth of a millimeter of specified measurements. There is no need for complex wireframes like common CAD solutions. This software functions like easy-to-use online CAD design tools, but it respects your privacy and is stable. 
 
 2. The second tool is Cura. This creates a file for the 3D printer. The file for your 3D printer is made of "g-code". A g-code file is what the printer uses to create the desired design for the physical world. This software allows you to control the instructions given to the 3D printer VERY extensively. In here is where the extensive control of print quality is set in the software.
 
